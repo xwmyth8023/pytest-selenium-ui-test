@@ -1,4 +1,4 @@
 allure-results
 .venv
 drivers
-*__pycache__*
+__pycache__
