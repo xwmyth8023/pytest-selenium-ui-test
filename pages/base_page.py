@@ -3,14 +3,15 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
-class BasePage():
-    NEWS = "//*[@id='s-top-left']/a[1]"
-    HAO123 = "//*[@id='s-top-left']/a[2]"
-    MAP = "//*[@id='s-top-left']/a[3]"
-    DISCUSSION = "//*[@id='s-top-left']/a[4]"
-    VIDEO = "//*[@id='s-top-left']/a[5]"
-    IMAGE = "//*[@id='s-top-left']/a[6]"
-    BODY = "name"
+
+class BasePage:
+    NEWS = (By.XPATH, "//*[@id='s-top-left']/a[1]")
+    HAO123 = (By.XPATH,"//*[@id='s-top-left']/a[2]")
+    MAP = (By.XPATH,"//*[@id='s-top-left']/a[3]")
+    DISCUSSION = (By.XPATH,"//*[@id='s-top-left']/a[4]")
+    VIDEO = (By.XPATH,"//*[@id='s-top-left']/a[5]")
+    IMAGE = (By.XPATH,"//*[@id='s-top-left']/a[6]")
+    BODY = (By.ID, "name")
 
     def __init__(self, driver):
         self.driver: WebDriver = driver
@@ -28,15 +29,15 @@ class BasePage():
 
     @property
     def target_attribute(self):
-        return self.driver.find_element(By.XPATH, self.NEWS).get_attribute("target")
+        return self.driver.find_element(*self.NEWS).get_attribute("target")
 
     @property
     def href_attribute(self):
-        return self.driver.find_element(By.XPATH, self.NEWS).get_attribute("href")
+        return self.driver.find_element(*self.NEWS).get_attribute("href")
 
     @property
     def get_news(self):
-        return self.driver.find_element(By.XPATH, self.NEWS)
+        return self.driver.find_element(*self.NEWS)
 
     def click_news(self):
         # self.driver.execute_script("arguments[0].removeAttribute('target');", self.get_news)
@@ -46,41 +47,37 @@ class BasePage():
         print(f"============={all_handles}")
         return self.driver.switch_to.window(all_handles[1])
 
-
     @property
     def get_hao123(self):
-        return self.driver.find_element(By.XPATH, self.HAO123)
+        return self.driver.find_element(*self.HAO123)
 
     def click_hao123(self):
         return self.get_hao123.click()
 
     @property
     def get_map(self):
-        return self.driver.find_element(By.XPATH, self.MAP)
+        return self.driver.find_element(*self.MAP)
 
     def click_map(self):
         return self.get_map.click()
 
     @property
     def get_discussion(self):
-        return self.driver.find_element(By.XPATH, self.DISCUSSION)
+        return self.driver.find_element(*self.DISCUSSION)
 
     def click_discussion(self):
         return self.get_discussion.click()
 
     @property
     def get_video(self):
-        return self.driver.find_element(By.XPATH, self.VIDEO)
+        return self.driver.find_element(*self.VIDEO)
 
     def click_video(self):
         return self.get_video.click()
 
     @property
     def get_image(self):
-        return self.driver.find_element(By.XPATH, self.IMAGE)
+        return self.driver.find_element(*self.IMAGE)
 
     def click_image(self):
         return self.get_image.click()
-
-
-

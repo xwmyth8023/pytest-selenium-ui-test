@@ -17,7 +17,7 @@ def pytest_addoption(parser):
     )
 
 
-@pytest.fixture(autouse=True, scope="function")
+@pytest.fixture(autouse=True, scope="session")
 def init_driver(request):
     driver = ''
     driver_service = request.config.getoption('--driver')
